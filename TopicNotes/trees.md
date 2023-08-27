@@ -38,3 +38,18 @@ whose split points can vary. Middle: each stump instance is slid horizontally to
 data panel by varying its split point value, creating three corresponding stair-case like least
 squares costs. Bottom: Each cost in the middle panel is constant between consecutive
 inputs implying that we only need to test one split point per flat region e.g the mid-point. 
+
+
+### Step-by-Step optimization of regression stumps
+To tune all three parameters (leaves and split points) of the stump for the purpose of
+regression, we need to take the following steps:
+• Create a set of candidate split point values by recording every mid-point between
+our input data along each of its input directions.
+• For each candidate split point we determine the stump’s leaf values optimally,
+setting them to the mean of the training data output to the left and right of the
+split point
+• Compute its least squares cost value
+• After doing this for all candidate split points, we find the best stump with optimal
+split point and leaf values as one that provides the lowest cost value.
+For a dataset of P points, each of input dimension N, there are a total of � � − 1
+split points to choose from over the entire input space

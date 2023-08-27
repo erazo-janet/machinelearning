@@ -39,17 +39,69 @@ data panel by varying its split point value, creating three corresponding stair-
 squares costs. Bottom: Each cost in the middle panel is constant between consecutive
 inputs implying that we only need to test one split point per flat region e.g the mid-point. 
 
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/b0c7e823-0474-4f4d-a70a-5b5708a23d0e)  
+
+in the image above, we have our data points and split point (dotted line). On the right you can see we have our leaves (vertial lines) whhere we fit the leaves to the data points. These 2 vertical leaves are identified as:  
+
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/4d4bcb86-b8cf-4ffe-ba0d-ad2ffe05141d)  
+
 
 ### Step-by-Step optimization of regression stumps
 To tune all three parameters (leaves and split points) of the stump for the purpose of
 regression, we need to take the following steps:
 • Create a set of candidate split point values by recording every mid-point between
-our input data along each of its input directions.
+our input data along each of its input directions (the left image above)
 • For each candidate split point we determine the stump’s leaf values optimally,
 setting them to the mean of the training data output to the left and right of the
-split point
+split point (we take the min of the values)
 • Compute its least squares cost value
 • After doing this for all candidate split points, we find the best stump with optimal
 split point and leaf values as one that provides the lowest cost value.
-For a dataset of P points, each of input dimension N, there are a total of � � − 1
+For a dataset of P points, each of input dimension N, there are a total of N(P-1_
 split points to choose from over the entire input space
+
+example:  
+
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/78008f8c-ecc0-4e32-b995-30dbd7699ca5)
+
+From the top left, we find the split line first which is the mid between the first and second points which is the dotted blue line. Our stump is the one point we have. Then we find hte least square solution for all the points. we find the deviation of those points from the line which gives us the cost function. Then we shift to the second split point on the second and third graph. We find the least square solition and cost function ont he second row. Then we go to the next points, and the mean from all the points to the left and right determine the position of the leaf. to chosoe which one of these options are optimal, we look at the cost function on the bottom row.   
+
+### Deeper Regerssion Trees
+Sometimes when growing a tree there are moments where we shouldnt split a leaf, sometimes the split doesnt covey any more useful information. When the value of the leaf does not change by splitting it, we should stop splitting it. example of different depths:  
+
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/0bff0dc0-f862-48db-98ee-5a5a4ee428d0)  
+
+do we need to go that deep though? consider the cost, and if it gives you any new results.
+
+## Classification Trees
+There are 2 ways to classify a tree: find the optimal split point where leaf values are fixed. our leaves are horizontal/flat, however if we determine optimal leaf values when split points are fixed, we can optimze the leaf values.  we can split the point between -1,+1 to classisify the dataset and use the softmaxx funciton to find the optimal values. 
+
+
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/d86a7a32-3f21-4d3b-aedb-e4755be5fa61)  
+
+we have a set of points here we want to classify. the top points are -1,+1. there are 9 points, and on the right we show the split points for each of them. we find the leaf values based on the standard mode. taking min isnt helpful, so mode, the number of repeated points is helpful. we have 8 points here so the mode is 2 so we go for the higher mode. so in classification we take the mode, and in regession we take the mean. this is called the majority vote. sometimes theres an imbalance where the numbers in one class are higher than the other. in this case the stumps will be identical, and we choose the leaf value based on the balanced mode. we do this by counting the number of points belonging to each class in the leaf and determine the mode by picking the class associated with the largest count. For a multi-class dataset with C classes, the weighted count for the �#$class on one
+leaf can be written as:   
+
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/ef7cca7f-e4c0-4c2c-b38e-9d53f21a6374)   
+
+ ### Random Forest
+ One often does not use a single recursively defined regression or classification tree,
+but a bagged ensemble of them. Bagging involved combining different crossvalidated models to produce a simple higher performing model. This can be done
+with recursively defined trees employing the cross validation techniques. Each tree
+can be trained on a random portion of the training data taken from the original
+dataset and grown to a predetermined maximum depth and afterwards, bagged
+together. While the bagging can be done with any universal approximator, it is
+especially useful for tree-based learners. The overfitting problem is less significant
+for tree-based learners than other approximators. Tree-based learners do not often
+lead to oscillatory behavior as the growth of each tree can be halted.
+Bagging a set of overfitting trees can successfully combat the overfitting each tree
+presents. Such an ensemble of recursively grown trees is called a random forest.
+The word “random” is because each tree uses a random portion of the original
+data as training (which is sampled from the original dataset with replacement) and
+only a random subset of input feature dimensions are sampled for viable split
+points at each node in the trees
+
+
+
+
+

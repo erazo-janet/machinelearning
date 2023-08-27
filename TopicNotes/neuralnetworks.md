@@ -118,9 +118,62 @@ if we have two nonlinear functions, encoeder fe and decoder df, we can tune the 
 the choice of the activation function is important to optimize a model. the step and sigmoid activation function, neurons act like a swich either being off 0 or on 1. However, this kind of step function can lead to a flat cost function making it hard to optimize sowe cna use logistic sigmoid, it can lead to a vanishing gradient problem.  
 rectified linear unit (ReLU) activation: only maps the negative input values to zero, so networks using this activation function dont have that vanishing gradient problem. when using this, you have to pay attention when initalizing and training a network for the nonpositive inputs
 
+To summarize:  
 
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/41f8479b-8426-4e86-bdeb-17f87e5f93ff)  
+
+we have the inputs going through the dendrites, the weighted sum goes through the soma in the nucleus and then hte output from that goes to an activation function which identifies if the neuron is going to be activated. the output then goes into the next neuron  
+
+the most widly used activation functions are:  
+
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/5386e7b4-592a-4cb0-b88a-036925eebe4f)  
+
+### Training and Interference  
+  
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/a6e5a6d0-ad2f-44f4-a2cc-55b784cd4446)  
+
+Training is when a deep learning algorithm is applied on data with known output.
+The weights in a deep learning structure are optimized so that the error between
+the input and output features is minimized. Using the trained model to predict output
+of unknown features is called “inference”. We optimize the weight and the parameters in the function, we train it in a system with no outputs. So if we want to identify a car, bicycle , a cat, we take a sample and train the network to identify the object. once we train, we apply it to the sample that does not know the output, so we apply the network thats trained to it. 
+
+Overview of deep learning training:  
+
+ ![image](https://github.com/erazo-janet/machinelearning/assets/76828004/46494353-e692-4d12-a178-8e1d01516298)  
+  
+ ### Backpropagation
+ Its not efficient to test the relation for all possible parameter variations. so once we have deep layers we have a ton of parameters to validate which is not practicalto optimize all parameters and weights so we can backpropagate which uses the error contribution of each neuron after data is processed. So the training set compares the output. the difference between the input and output gives us the error, so we need to reduce the error. the backpropagation is when we take that error, go back and change all the parameters so it reduces the error. this is an approach to compute gradients via computer program effective for multi layer neural networks. How it works:  
+* Backpropagation dynamically calculates the gradient (derivative) of the loss function with respect to weights in a network to find the minimum (optimize the function)
+* It optimizes the performance of the network by adjusting the
+weights (in gradient descent algorithm)
+* Error and gradient are calculated for each node.
+* Intermediate errors are transmitted backwards through the
+network (backpropagation)
+* The aim is to optimize the weight so that the neural network
+can learn how correctly map arbitrary inputs to outputs 
+
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/f4b56591-c68f-47fc-b74b-b45ed21e0ee8)  
+
+ * Inputs (X) arrive through the connected path
+• Input is modeled using weights (W) that are selected randomly
+• The output for each neuron from the previous layer is calculated to the output layer
+• Error in the output is calculated- error = actual output – real output
+• Loop back from the output layer to the hidden layer to adjust the weights and decrease
+• The error
+• Repeat the process until the desired output is achieved.
+
+if the error is large, we go back to the previous layer and adjust the weights to decrease the error 
+
+### Deep Learning Training
+
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/ab97a939-5c57-431f-82f0-d42d8051f6a7)
+
+ Here in deep learning we have multiple layers. we have a training sample of a face, bike and strawberry. we want to train the model to identify these so we know what output we will get. if a face is identifed as a bike, thatts an error so we go back and fix it. then we go to interference where we have the final weights and model to have the correct output  
+
+ ![image](https://github.com/erazo-janet/machinelearning/assets/76828004/d7646839-ba25-4abc-a847-00ca949375e4)  
 
  
+
 
 
 

@@ -15,4 +15,3 @@ This is my repository to include all things machine learning, such as definition
 * Kernels
 * Neural Networks
 * Tree Learners
-* Probabilistic Clasifications

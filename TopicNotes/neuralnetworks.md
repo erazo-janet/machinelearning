@@ -46,6 +46,83 @@ here, we have input functions and weighted values, but now all the inputs go int
  this is referred to as fully connected. every dimension of the input is connected to every unit in the first hidden layer, and each unit in the first hidden layer is connected to every unit of the second hidden layer. at the right, we can seea linear combination of the u2 two layer units produces the final layer of the network
 
 ### Compact representation of two layer networks
+we can create a compact version of two layer network where each vector is the weight of each unit stacked together into a matrix:  
+A![image](https://github.com/erazo-janet/machinelearning/assets/76828004/e580d8a1-562e-42f8-b4f9-eee1850611f9)  
+  
+where each column of the unit corresponds to each unit. 
+
+### Two layer and general multi hidden layers
+the full two layer nerural network model is:  
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/6da624bd-8213-441b-a060-44bac2e512db)  
+
+To summarize, here are the steps to take for recurvie relatino for multi layer units:  
+* Choose an activation function a(.)
+• Construct Ul-1 number of layer units 
+• Compute the linear combination 
+• Pass the result through activation and form a(v)
+
+
+ ### Summary:
+ ![image](https://github.com/erazo-janet/machinelearning/assets/76828004/6a3979a4-480e-45f4-b931-aee9c6c99b11)  
+ each of these outputs from the input layer goes into each unit in the next layer l so its fully connected. finally we sum it up with the final weight producing the final result for the unit. summing up the output of the neural network represented in the hollow circle
+
+ we can see here there is 1 input layer, many hidden layers, and finally an output. so thats why its called recursive cus it repeats itself:  
+
+  ![image](https://github.com/erazo-janet/machinelearning/assets/76828004/14cb7182-756b-4a2e-954e-6fafbfb64045)  
+
+### Selectig the right network architecture
+how do we select the number of layers and units? the best way is to test. the more layers we have the more expensive it is in terms of computtion. increasing number of units wont change the activation much, but layers can
+
+### Biological Neural Nets 
+The human brain contains about 10^11 neurons which work together to perform cognitive tasks. for example, we use about 10^5 neurons to look at something. These are the biological components of a nueron:  
+
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/84b76dfe-0c58-49d9-b7aa-a8de79b640ea)  
+
+The human brain consists of neurons or nerve cells which transmit and
+process the information received from our senses. Many such nerve cells
+are arranged together in our brain to form a network of nerves. These
+nerves pass electrical impulses i.e the excitation from one neuron to the
+other.
+The dendrites receive the impulse from the terminal button or synapse of
+an adjoining neuron. Dendrites carry the impulse to the nucleus of the
+nerve cell which is also called as soma. Here , the electrical impulse is
+processed and then passed on to the axon. The axon is longer branch
+among the dendrites which carries the impulse from the soma to the
+synapse. The synapse then passes the impulse to dendrites of the second
+neuron. Thus, a complex network of neurons is created in the human brain.  
+Neurons are inactive until the net input to the cell body aka soma reaches a certain threshold, where the neuron gets activated and fires a electro chemical singal, hence the name activation funciton.  
+
+ ![image](https://github.com/erazo-janet/machinelearning/assets/76828004/7c99c4ab-d4db-44f0-bf6e-f54850540c7b)  
+
+ now we can map this mathematically:    
+   
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/b9305bab-42cd-45b0-bdd4-0dee45b4ddac)
+  
+ ![image](https://github.com/erazo-janet/machinelearning/assets/76828004/5e737747-859d-490d-a17b-2fd185d451a8)  
+
+ here on the left we have 1,x1...x6 which are the dendrites aka inputs, then the blue points are we get to SOMA, where we sum them up at each point. so each of these sum up to a synapse, which is where we cna meet our threshold. in mathematical terms its an activation function which produces an electrical singal that goes to the next neuron which goes to the next layer. 
+
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/7223c63a-4f2a-4c09-8ef1-16c129d72044)  
+
+above we can see our inputs x0..xn and our weights w0..wn and XW is our inputs. these get summed up into soma and then run through an activation term, which is when the singals activate the neuron. it travels through the axom to the nect neuron through synapses which is essentially the next layer.  
+
+now we can look at this through a non linear classification network. we can choose a network with 4 hidden layers and 1 input with 10 inputs.we choose the parameters of this by minimzing the softmax function via gradient  
+  
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/e2e93073-c3e3-439a-b282-1a7061e4727f)  
+
+ Random autoencoder:  
+if we have two nonlinear functions, encoeder fe and decoder df, we can tune the parameters of the autocoders. in this example we have 9 instances of the function, each called a manifold, wehre both fd and fe are five hidden neural networks with 10 units in each layer. 
+![image](https://github.com/erazo-janet/machinelearning/assets/76828004/26d6b248-64e3-418a-a9e2-2b3cf974d65d)  
+
+### Activation Functions
+the choice of the activation function is important to optimize a model. the step and sigmoid activation function, neurons act like a swich either being off 0 or on 1. However, this kind of step function can lead to a flat cost function making it hard to optimize sowe cna use logistic sigmoid, it can lead to a vanishing gradient problem.  
+rectified linear unit (ReLU) activation: only maps the negative input values to zero, so networks using this activation function dont have that vanishing gradient problem. when using this, you have to pay attention when initalizing and training a network for the nonpositive inputs
+
+
 
  
+
+
+
+
 

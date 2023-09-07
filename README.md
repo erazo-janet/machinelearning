@@ -4,7 +4,6 @@ This is my repository to include all things machine learning, such as definition
 ### You can find the following projects here:  
 * Credit card fraud detection system using decision trees 
 * Classifying handwritten digits using decision trees and random forest
-* Environmental Impact on Food Production
     
 ### The following topics are explained in this folder:
 * Optimization
